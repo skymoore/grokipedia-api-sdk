@@ -1,5 +1,5 @@
 from typing import Any
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class SearchResult(BaseModel):
@@ -9,7 +9,7 @@ class SearchResult(BaseModel):
     title: str
     snippet: str
     relevance_score: float = Field(alias="relevanceScore")
-    view_count: str = Field(alias="viewCount")
+    view_count: int = Field(alias="viewCount")
 
 
 class SearchResponse(BaseModel):
@@ -35,6 +35,16 @@ class Page(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
     stats: dict[str, Any] = Field(default_factory=dict)
     linked_pages: list[Any] = Field(alias="linkedPages", default_factory=list)
+    
+    @field_validator("citations", "images", "fixed_issues", "linked_pages", mode="before")
+    @classmethod
+    def convert_none_to_list(cls, v):
+        return v if v is not None else []
+    
+    @field_validator("metadata", "stats", mode="before")
+    @classmethod
+    def convert_none_to_dict(cls, v):
+        return v if v is not None else {}
 
 
 class PageResponse(BaseModel):
