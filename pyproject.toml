@@ -1,10 +1,10 @@
 [project]
 name = "grokipedia-api-sdk"
-version = "0.1.0"
+version = "0.1.1"
 description = "Grokipedia API SDK"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.12"
 dependencies = ["httpx>=0.28.1", "pydantic>=2.12.3"]
-
 [dependency-groups]
 dev = ["pytest>=8.4.2", "pytest-asyncio>=1.2.0", "pytest-httpx>=0.35.0"]
