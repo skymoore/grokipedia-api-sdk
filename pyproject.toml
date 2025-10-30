@@ -1,6 +1,6 @@
 [project]
 name = "grokipedia-api-sdk"
-version = "0.1.2"
+version = "0.1.3"
 description = "Grokipedia API SDK"
 readme = "README.md"
 license = "MIT"

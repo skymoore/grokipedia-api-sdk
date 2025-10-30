@@ -1,4 +1,6 @@
-from typing import Any
+from __future__ import annotations
+
+from typing import Any, Optional
 from pydantic import BaseModel, Field, field_validator
 
 
@@ -48,7 +50,7 @@ class Page(BaseModel):
 
 
 class PageResponse(BaseModel):
-    page: Page
+    page: Optional[Page] = None
     found: bool
 
 
